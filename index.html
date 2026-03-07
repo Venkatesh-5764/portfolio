@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Karri Venkatesh Portfolio</title>
     <style>
-        /* Global Styles */
         body {
           margin: 0;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -48,6 +47,7 @@
           box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
           backdrop-filter: blur(10px);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
         }
 
         .card:hover {
@@ -98,6 +98,20 @@
         a:hover {
           color: #fff;
         }
+
+        .project-details {
+          display: none;
+          margin-top: 20px;
+          background: rgba(255, 215, 0, 0.1);
+          padding: 20px;
+          border-radius: 10px;
+          animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+          from {opacity: 0; transform: translateY(10px);}
+          to {opacity: 1; transform: translateY(0);}
+        }
     </style>
 </head>
 <body>
@@ -108,12 +122,32 @@
 </header>
 
 <section>
-    <div class="card">
-        <h2>Projects</h2>
-        <ul>
-            <li>💰 Financial Backend (Spring Boot Project)</li>
-            <li>🔧 Technician Finder Project</li>
-        </ul>
+    <div class="card" onclick="toggleProject('financial')">
+        <h2>💰 Financial Backend (Spring Boot Project)</h2>
+        <div id="financial" class="project-details">
+            <p><strong>Overview:</strong> A wallet system backend built with Spring Boot and PostgreSQL.</p>
+            <ul>
+                <li>🔑 User Authentication (JWT)</li>
+                <li>💳 Transaction Management</li>
+                <li>📊 Database: PostgreSQL</li>
+                <li>☁️ Deployment: Docker + Kubernetes</li>
+            </ul>
+            <p><strong>Workflow:</strong> User → API Gateway → Service Layer → Repository → Database</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="toggleProject('technician')">
+        <h2>🔧 Technician Finder Project</h2>
+        <div id="technician" class="project-details">
+            <p><strong>Overview:</strong> A service-matching platform connecting users with nearby technicians.</p>
+            <ul>
+                <li>📍 Location-based Search</li>
+                <li>⚡ REST APIs with Spring Boot</li>
+                <li>🗄️ Database: MySQL</li>
+                <li>🚀 CI/CD Pipeline with GitHub Actions</li>
+            </ul>
+            <p><strong>Workflow:</strong> User Request → Search Service → Matching Algorithm → Technician Response</p>
+        </div>
     </div>
 
     <div class="card">
@@ -129,5 +163,12 @@
 <footer>
     © 2026 Karri Venkatesh | Portfolio
 </footer>
+
+<script>
+    function toggleProject(id) {
+      const project = document.getElementById(id);
+      project.style.display = (project.style.display === "block") ? "none" : "block";
+    }
+</script>
 </body>
 </html>
